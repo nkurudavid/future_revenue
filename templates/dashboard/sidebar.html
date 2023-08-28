@@ -1,0 +1,55 @@
+{% load static %}
+<div class="app-sidebar colored">
+  <div class="sidebar-header">
+    <a class="header-brand" href="{% url 'dashboard' %}">
+      <div class="logo-img">
+        <img
+          src="{% static 'dashboard/img/logo.png' %}"
+          width="35px"
+          alt=""
+          class="header-brand-img"
+          alt="lavalite"
+        />
+      </div>
+      <span class="text"> MANAGER </span>
+    </a>
+    <button type="button" class="nav-toggle">
+      <i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i>
+    </button>
+    <button id="sidebarClose" class="nav-close">
+      <i class="ik ik-x"></i>
+    </button>
+  </div>
+
+  <div class="sidebar-content">
+    <div class="nav-container">
+      <nav id="main-menu-navigation" class="navigation-main">
+        <div class="nav-lavel">Navigation</div>
+        <div class="nav-item {{dash_active}}">
+          <a href="{% url 'dashboard' %}">
+            <i class="ik ik-home"></i> <span>Dashboard</span>
+          </a>
+        </div>
+
+        <div class="nav-lavel">Shop Sales</div>
+        <div class="nav-item {{salesData_active}}">
+          <a href="{% url 'sales_data' %}">
+            <i class="ik ik-list"></i> <span>Sales Data</span>
+          </a>
+        </div>
+
+        <div class="nav-lavel">OUR STOCK</div>
+        <div class="nav-item {{category_active}}">
+          <a href="{% url 'categories_list' %}">
+            <i class="ik ik-clipboard"></i> <span>Product Categories</span>
+          </a>
+        </div>
+        <div class="nav-item {{productList_active}}">
+          <a href="{% url 'products_list' %}">
+            <i class="ik ik-list"></i> <span>Products</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

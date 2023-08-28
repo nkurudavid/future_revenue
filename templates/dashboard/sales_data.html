@@ -1,0 +1,126 @@
+{% extends "dashboard/main.html" %}
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+  </head>
+
+  <body>
+    {% block main_content%}
+
+    <div class="main-content">
+      <div class="container-fluid">
+        <div class="page-header">
+          <div class="row align-items-end">
+            <div class="col-lg-8">
+              <div class="page-header-title">
+                <i class="ik ik-list bg-secondary"></i>
+                <div class="d-inline">
+                  <h5>Sales Data</h5>
+                  <span> All sales data uploaded</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <nav class="breadcrumb-container" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <a href="{% url 'dashboard' %}">
+                      <i class="ik ik-home"></i>
+                      Home
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Sales Data
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <hr/>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header"><h3>Sales Data</h3></div>
+              <div class="card-body">
+                <button
+                  type="button"
+                  class="btn btn-primary float-right"
+                  data-toggle="modal"
+                  data-target="#salesModal"
+                >
+                  <i class="ik ik-upload"></i>
+                  Upload dataset
+                </button>
+                <table id="data_table" class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Product</th>
+                      <th>Unit Price</th>
+                      <th>Quantity</th>
+                      <th>Sales amount</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for data in sales_data %}
+                    <tr>
+                      <td>{{ forloop.counter }}.</td>
+                      <td>{{ data.product.name }}</td>
+                      <td>{{ data.product.price }}</td>
+                      <td>{{ data.quantity_sold }}</td>
+                      <td>{{ data.sales_amount }}</td>
+                      <td>{{ data.date|date:"m/ d/ Y" }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="modal fade"
+          id="salesModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="salesModalTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="salesModalTitle">
+                  Upload Sales Data
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                  {% csrf_token %} {{ form.as_p }}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
+                  <button type="submit" class="btn btn-primary"> <i class="ik ik-upload"></i> Upload </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    {% endblock %}
+  </body>
+</html>

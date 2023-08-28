@@ -1,0 +1,49 @@
+{% load static %}
+
+<div
+  class="modal fade apps-modal"
+  id="appsModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="appsModalLabel"
+  aria-hidden="true"
+  data-backdrop="false"
+>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <i class="ik ik-x-circle"></i>
+  </button>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <br />
+      <h5 class="text-center">
+        Estimating Future Revenue by Predicting The Amount of Product
+      </h5>
+      <div class="modal-body d-flex align-items-center">
+        <div class="container">
+          <div class="apps-wrap">
+            <div class="app-item">
+              <a href="{% url 'dashboard' %}">
+                <i class="ik ik-bar-chart-2"></i> <span>Dashboard</span>
+              </a>
+            </div>
+            <div class="app-item">
+              <a href="{% url 'sales_data' %}">
+                <i class="ik ik-list"></i> <span>Sales Data</span>
+              </a>
+            </div>
+            <div class="app-item">
+              <a href="{% url 'categories_list' %}">
+                <i class="ik ik-clipboard"></i> <span>Product Categories</span>
+              </a>
+            </div>
+            <div class="app-item">
+              <a href="{% url 'products_list' %}">
+                <i class="ik ik-list"></i> <span>Products</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

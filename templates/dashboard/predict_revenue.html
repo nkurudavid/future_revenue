@@ -1,0 +1,133 @@
+{% extends "dashboard/main.html" %}
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+  </head>
+
+  <body>
+    {% block main_content%}
+
+    <div class="main-content">
+      <div class="container-fluid">
+        <div class="page-header">
+          <div class="row align-items-end">
+            <div class="col-lg-8">
+              <div class="page-header-title">
+                <i class="ik ik-clipboard bg-info"></i>
+                <div class="d-inline">
+                  <h5>Revenue</h5>
+                  <span> Predicted Revenue </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <nav class="breadcrumb-container" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="{% url 'dashboard' %}">
+                      <i class="ik ik-home"></i> Home
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <a href="{% url 'products_list' %}">
+                      <i class="ik ik-clipboard"></i> Product List
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Predicted Revenue
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <hr/>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h3>Predicted Revenue for {{ product.name }}</h3>
+              </div>
+              <div class="card-body">
+                <div class="container mt-4">
+                  <img src="{{ plot_path }}" alt="Predicted Revenue Plot" class="img-fluid" />
+                </div>
+                <hr/>
+                <button class="btn btn-secondary" onclick="printReport()">
+                  <i class="ik ik-file"></i>
+                  Generate Report
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <script>
+      function printReport() {
+        var additionalContent = '<h2>IDDAS Document Application Processing Report</h2>' +
+                                '<p>The following report provides a summary of the processed citizen document applications within the specified period.</p>';
+        var selectedSection = '<div class="card mb-3">'+
+                '<div class="box-body reportContents">'+
+                '<table class="table table-bordered table-striped">'+
+                  '<thead>'+
+                    '<tr>'+
+                      '<th>No.</th>'+
+                      '<th>CITIZEN</th>'+
+                      '<th>BIRTHDAY</th>'+
+                      '<th>GENDER</th>'+
+                      '<th>REQUEST</th>'+
+                      '<th>STATUS</th>'+
+                      '<th>DATE</th>'+
+                    '</tr>'+
+                  '</thead>'+
+                  '<tbody>'+
+                    '{% if archivedRequests %} {% for application in archivedRequests %}'+
+                    '<tr>'+
+                      '<td>{{ forloop.counter }}.</td>'+
+                      '<td>'+
+                        'Name: {{application.citizen}}<br />'+
+                        'ID: {{application.citizen.nid_number}}<br />'+
+                      '</td>'+
+                      '<td>'+
+                        'BoD: {{application.citizen.birthdate}}<br />'+
+                      '</td>'+
+                      '<td>'+
+                        '{{application.citizen.gender}}<br />'+
+                      '</td>'+
+                      '<td>'+
+                        '{{application.service.name}}'+
+                      '</td>'+
+                      '<td>'+
+                        '{{application.status}}'+
+                      '</td>'+
+                      '<td>'+
+                        '{{application.createdDate|date:"F j, Y H:i"}}'+
+                      '</td>'+
+                    '</tr>'+
+                    '{% endfor %} {% endif %}'+
+                  '</tbody>'+
+                '</table>'+
+              '</div></div>';
+
+        // Create a new page content by combining the selected sections' content with additional content
+        var printContent = additionalContent + selectedSection;
+
+        var originalContent = document.body.innerHTML;
+        document.body.innerHTML = printContent;
+        window.print();
+        document.body.innerHTML = originalContent;
+      }
+    </script>
+
+    {% endblock %}
+  </body>
+</html>

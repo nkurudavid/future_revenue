@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% if title %}
+    <title>Future Revenue - {{ title }}</title>
+    {% else %}
+    <title>Future Revenue</title>
+    {% endif%}
+
+    <link rel="icon" type="image/jpg" href="{% static 'dashboard/img/logo.png' %}" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'front/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'front/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'front/vendors/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/vendors/owl-carousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/vendors/animate-css/animate.css' %}">
+    <!-- main css -->
+    <link rel="stylesheet" href="{% static 'front/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'front/css/responsive.css' %}">
+</head>
+<body>
+
+    <!--================Header Menu Area =================-->
+    <header class="header_area">	
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a href="{% url 'home' %}" class="navbar-brand logo_h">
+                        <img width="40" class="bg-light" src="{% static 'dashboard/img/logo.png' %}" /> ESTIMATING FUTURE REVENUE
+                      </a>
+                    <div class="right-button">
+                        <ul>
+                            <li><a class="sign_up" href="{% url 'manager_login' %}">Login</a></li>
+                        </ul>
+                    </div> 
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================Header Menu Area =================-->
+
+    <!--================Home Banner Area =================-->
+    <section class="home_banner_area">
+        <div class="banner_inner d-flex align-items-center bg-secondary">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-xl-7">
+                        <div class="banner_content">
+                            <h3 class="header-title text-light">ESTIMATING FUTURE REVENUE BY PREDICTING THE AMOUNT OF PRODUCT</h3>
+                            <h4 class="header-subtitle">T2000 SUPERMARKET</h4>
+                            <p>Stay ahead of the competition by embracing the power of predictive analytics.<br>Start predicting, start succeeding.</p>
+                            <a class="btn btn-primary btn-lg" href="{% url 'manager_login' %}"> Get Started </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-xl-5">
+                        <img src="{% static 'front/img/analytics-future.png' %}" class="img-fluid animated" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+
+
+    <!-- ================ start footer Area ================= -->
+    <footer class="footer-area py-4">
+        <div class="container">
+            <div class="w-100">
+                <span class="text-center text-sm-left d-md-inline-block">
+                  <strong>
+                    Copyright &copy; 2023
+                    <span class="text-light"> Estimating Future Revenue by Predicting The Amount of Product </span>.
+                  </strong>
+                  All rights reserved.
+                </span>
+                <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">
+                  Designed by
+                  <a href="#" class="text-light" target="_blank">
+                    <strong>Sande Emmanuel</strong>
+                  </a>
+                </span>
+              </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ================ End footer Area ================= -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'front/js/jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'front/js/popper.js' %}"></script>
+    <script src="{% static 'front/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'front/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'front/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'front/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'front/js/mail-script.js' %}"></script>
+    <script src="{% static 'front/js/contact.js' %}"></script>
+    <script src="{% static 'front/js/jquery.form.js' %}"></script>
+    <script src="{% static 'front/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'front/js/mail-script.js' %}"></script>
+    <script src="{% static 'front/js/theme.js' %}"></script>
+</body>
+</html>

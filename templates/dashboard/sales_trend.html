@@ -1,0 +1,106 @@
+{% extends "dashboard/main.html" %}
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+  </head>
+
+  <body>
+    {% block main_content%}
+
+    <div class="main-content">
+      <div class="container-fluid">
+        <div class="page-header">
+          <div class="row align-items-end">
+            <div class="col-lg-8">
+              <div class="page-header-title">
+                <i class="ik ik-bar-chart-2 bg-info"></i>
+                <div class="d-inline">
+                  <h5>Sales</h5>
+                  <span> Sales Trend </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <nav class="breadcrumb-container" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <a href="{% url 'dashboard' %}">
+                      <i class="ik ik-home"></i>
+                      Home
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <a href="{% url 'products_list' %}">
+                      <i class="ik ik-clipboard"></i> Product List
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Sales Trend
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <hr/>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h3>Sales Trend for {{ product.name }}</h3>
+              </div>
+              <div class="card-body">
+                <div class="container mt-4 py-3" id="imageContainer">
+                  <img src="{{ plot_path }}" alt="Sales Trend Plot" id="sales_trend_figure" class="img-fluid" />
+                </div>
+                <hr />
+                <button class="btn btn-secondary" onclick="printReport()">
+                  <i class="ik ik-file"></i>
+                  Generate Report
+                </button>
+                <a class="btn btn-primary" href="{% url 'predict_revenue' product.id %}">
+                  <i class="ik ik-pie-chart"></i>
+                  Predict Revenue
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    
+    <script>
+      function printReport() {
+        // Assuming you have data to replace placeholders
+        var product = "{{ product.name }}";
+  
+        var additionalContent = `
+          <h2><u>Estimating Future Revenue by Predicting The Amount of Product</u></h2>
+          <p>Sales Trend for ${product} Report.</p>
+        `;
+        
+        var imageContainer = document.getElementById("imageContainer");
+
+        // Create a new div for the report content
+        var reportContent = document.createElement("div");
+        reportContent.innerHTML = additionalContent;
+        reportContent.appendChild(imageContainer);
+
+        // Create a new window to print the report content
+        var printWindow = window.open("", "_blank");
+        printWindow.document.body.appendChild(reportContent);
+        printWindow.print();
+        printWindow.close();
+      }
+    </script>
+    {% endblock %}
+  </body>
+</html>

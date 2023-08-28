@@ -1,0 +1,116 @@
+{% extends "dashboard/main.html" %}
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+  </head>
+
+  <body>
+    {% block main_content%}
+
+    <div class="main-content">
+      <div class="container-fluid">
+        <div class="page-header">
+          <div class="row align-items-end">
+            <div class="col-lg-8">
+              <div class="page-header-title">
+                <i class="ik ik-home bg-secondary"></i>
+                <div class="d-inline">
+                  <h5>Dashboard</h5>
+                  <span>
+                    Estimating Future Revenue by Predicting The Amount of Product
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <nav class="breadcrumb-container" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <a href="{% url 'dashboard' %}">
+                      <i class="ik ik-home"></i>
+                      Home
+                    </a>
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        <hr/>
+        
+        <div class="row clearfix mt-5">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="widget py-4">
+              <div class="widget-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="state">
+                    <h5>
+                      <a href="{% url 'sales_data' %}">
+                        <span>Sales Data</span>
+                      </a>
+                    </h5>
+                  </div>
+                  <div class="icon">
+                    <i class="ik ik-list text-yellow"></i>
+                  </div>
+                </div>
+                <span class="text-small mt-10 d-block">
+                  Upload Dataset and view Sales Data
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="widget py-4">
+              <div class="widget-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="state">
+                    <h5>
+                      <a href="{% url 'categories_list' %}">
+                        <span>Product Categories</span>
+                      </a>
+                    </h5>
+                  </div>
+                  <div class="icon">
+                    <i class="ik ik-clipboard text-yellow"></i>
+                  </div>
+                </div>
+                <span class="text-small mt-10 d-block">Check product category from data sales</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="widget py-4">
+              <div class="widget-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="state">
+                    <h5>
+                      <a href="{% url 'products_list' %}">
+                        All Products
+                      </a>
+                    </h5>
+                  </div>
+                  <div class="icon">
+                    <i class="ik ik-list text-yellow"></i>
+                  </div>
+                </div>
+                <span class="text-small mt-10 d-block">
+                  Evaluate product sales and predict revenue
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    </script>
+    {% endblock %}
+  </body>
+</html>
