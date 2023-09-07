@@ -1,7 +1,7 @@
 import os
 from calendar import month_abbr
-from datetime import datetime, timedelta
-from django.shortcuts import get_object_or_404, redirect, render
+from datetime import datetime
+from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model, authenticate, login, logout, update_session_auth_hash
@@ -18,7 +18,7 @@ from matplotlib.dates import date2num
 
 from .models import ProductCategory, Product, SalesData
 from .forms import UploadDataForm
-from .analytics import forecast_revenue  # Import your prediction function
+from .analytics import forecast_revenue 
 
 
 
@@ -173,7 +173,7 @@ def sales_data(request,):
                 try:
                     data_frame = pd.read_csv(uploaded_file)
                     for index, row in data_frame.iterrows():
-                        date = datetime.strptime(row['Date'], '%Y-%m-%d').date()
+                        date = datetime.strptime(row['Date'], "%m/%d/%Y").date()
                         product_category_name = row['Product Category']
                         product_name = row['Product']
                         product_price = row['Price']

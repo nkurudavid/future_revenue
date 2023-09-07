@@ -12,7 +12,7 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         ('User Credential', {'fields': ('email', 'password')}),
         ('Personal Info', {'fields': ('first_name', 'last_name', 'gender',)}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_manager', 'is_superuser',)}),
+        ('Permissions', {'fields': ('is_active', 'is_manager', 'is_superuser',)}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
@@ -21,8 +21,8 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('first_name', 'last_name', 'gender',),
         }),
         ('Permission', {
-            'classes': ('collapse',),
-            'fields': ('is_active', 'is_staff', 'is_manager', 'is_superuser',),
+            'classes': ('wide',),
+            'fields': ('is_active', 'is_manager', 'is_superuser',),
         }),
         ('User Credential', {
             'classes': ('wide',),

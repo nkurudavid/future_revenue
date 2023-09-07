@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Sales Data</title>
   </head>
 
   <body>
@@ -42,7 +42,7 @@
             </div>
           </div>
         </div>
-        <hr/>
+        <hr />
 
         <div class="row">
           <div class="col-md-12">
@@ -101,23 +101,33 @@
                 <h5 class="modal-title" id="salesModalTitle">
                   Upload Sales Data
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <form method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                  {% csrf_token %} {{ form.as_p }}
-                </div>
+                <div class="modal-body">{% csrf_token %} {{ form.as_p }}</div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
-                  <button type="submit" class="btn btn-primary"> <i class="ik ik-upload"></i> Upload </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="ik ik-upload"></i> Upload
+                  </button>
                 </div>
               </form>
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
